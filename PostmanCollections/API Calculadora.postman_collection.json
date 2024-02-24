@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "93d32ce4-78a6-4ea3-b9f4-14d5b20a45c3",
+		"name": "API Calculadora",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7508453",
+		"_collection_link": "https://solar-moon-309015.postman.co/workspace/API-Projetos~0962cdbf-0c99-4096-8c09-d02e32a51c85/collection/7508453-93d32ce4-78a6-4ea3-b9f4-14d5b20a45c3?action=share&source=collection_link&creator=7508453"
+	},
+	"item": [
+		{
+			"name": "Tipo Cálculo",
+			"item": [
+				{
+					"name": "Buscar tipos cálculos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/tipos-calculos",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tipos-calculos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Calculadora",
+			"item": [
+				{
+					"name": "Cadastrar cálculo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"primeiroValor\": 10.00,\r\n    \"segundoValor\": 0.00,\r\n    \"tipo\": \"DIVISAO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/calculadoras",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"calculadoras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar cálculos paginados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/calculadoras?page=0&size=5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"calculadoras"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
