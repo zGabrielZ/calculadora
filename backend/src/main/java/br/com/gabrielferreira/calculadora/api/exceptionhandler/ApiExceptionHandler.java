@@ -1,6 +1,7 @@
 package br.com.gabrielferreira.calculadora.api.exceptionhandler;
 
 import br.com.gabrielferreira.calculadora.api.mapper.ErroPadraoMapper;
+import br.com.gabrielferreira.calculadora.domain.exception.MsgException;
 import br.com.gabrielferreira.calculadora.domain.exception.RegraDeNegocioException;
 import br.com.gabrielferreira.calculadora.domain.exception.model.ErroPadrao;
 import br.com.gabrielferreira.calculadora.domain.exception.model.ErroPadraoCampos;
@@ -15,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
+
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -55,5 +58,10 @@ public class ApiExceptionHandler {
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         ErroPadrao erroPadrao = erroPadraoMapper.toErroPadrao(toFusoPadraoSistema(ZonedDateTime.now()), httpStatus.value(), "Erro inesperado", "Ocorreu um erro inesperado no sistema, tente mais tarde", request.getRequestURI());
         return ResponseEntity.status(httpStatus).body(erroPadrao);
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    public final ResponseEntity<Object> handleResourceNotFound(Exception ex) {
+        throw new MsgException(ex.getMessage());
     }
 }
